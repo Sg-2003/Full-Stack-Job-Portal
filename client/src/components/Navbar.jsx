@@ -4,7 +4,7 @@ import { assets } from "../assets/assets";
 import { useAppContext } from "../context/AppContext";
 
 const Navbar = () => {
-  const { setShowRecruiterLogin, userData, setUserData, setShowUserLogin, setToken } = useAppContext();
+  const { setShowRecruiterLogin, userData, setUserData, setShowUserLogin, setToken, backendUrl } = useAppContext();
   const navigate = useNavigate();
 
   const handleLogout = () => {
