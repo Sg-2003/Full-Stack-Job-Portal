@@ -564,13 +564,13 @@ const seedDB = async () => {
 
     // ── Seed fake candidates ──────────────────────────────────
     const candidateNames = [
-      "Alice Johnson", "Bob Smith", "Carol Williams", "David Brown",
-      "Emma Davis", "Frank Miller", "Grace Wilson", "Henry Moore",
-      "Isabella Taylor", "James Anderson", "Kira Thomas", "Liam Jackson",
-      "Mia White", "Noah Harris", "Olivia Martin", "Patrick Thompson",
-      "Quinn Garcia", "Rachel Martinez", "Samuel Robinson", "Tina Clark",
-      "Umar Rodriguez", "Victoria Lewis", "William Lee", "Xena Walker",
-      "Yusuf Hall"
+      "Aarav Sharma", "Aditya Patel", "Vihaan Iyer", "Arjun Mehta",
+      "Sai Krishnan", "Reyansh Kapoor", "Krishna Das", "Ishaan Verma",
+      "Shaurya Joshi", "Atharva Rao", "Ananya Sen", "Diya Mukherjee",
+      "Pari Nair", "Pihu Reddy", "Riya Malhotra", "Aadhya Saxena",
+      "Anvi Gupta", "Saanvi Choudhury", "Sanya Gill", "Kavya Bhat",
+      "Pranav Kulkarni", "Neha Deshmukh", "Rahul Banerjee", "Pooja Trivedi",
+      "Amit Mishra"
     ];
 
     // Clear all previous fake candidate accounts (keep only user@demo.com)
@@ -583,17 +583,19 @@ const seedDB = async () => {
       const email = `candidate${i + 1}@demo.com`;
       // Set distinct resume file names and mock profile avatars dynamically
       const resumeFile = `1783328342787-resume-Sukumar_Gope_Frontend_Vebbly_Resume.pdf`;
+      
+      // Use specific Indian portrait photos from Unsplash for realistic candidates
       const avatarUrl = `https://images.unsplash.com/photo-${[
-        "1534528741775-53994a69daeb", "1507003211169-0a1dd7228f2d", "1539571696357-5a69c17a67c6",
-        "1500648767791-00dcc994a43e", "1494790108377-be9c29b29330", "1524504388940-b1c1722653e1",
-        "1488426862026-3ee34a7d66df", "1438761681033-6461ffad8d80", "1472099645785-5658abf4ff4e",
-        "1506794778202-cad84cf45f1d", "1517841905240-472988babdf9", "1522075469751-3a6694fb2f61",
-        "1544005313-94ddf0286df2", "1501196354995-cbb51c65aaea", "1554151228-14d9def656e4",
-        "1531746020798-e6953c6e8e04", "1508214751196-bcfd4ca60f91", "1537368910025-700350fe46c7",
-        "1580489944761-15a19d654956", "1573496359142-b8d87734a5a2", "1508214751196-bcfd4ca60f91",
-        "1560250097-0b93528c311a", "1573497019940-1c28c88b4f3e", "1519085360753-af0119f7cbe7",
-        "1506794778202-cad84cf45f1d"
-      ][i % 24]}?auto=format&fit=crop&w=150&h=150&q=80`;
+        "1507003211169-0a1dd7228f2d", "1506794778202-cad84cf45f1d", "1500648767791-00dcc994a43e",
+        "1492562080023-ab3db95bfbce", "1522075469751-3a6694fb2f61", "1539571696357-5a69c17a67c6",
+        "1519085360753-af0119f7cbe7", "1534528741775-53994a69daeb", "1544005313-94ddf0286df2",
+        "1494790108377-be9c29b29330", "1524504388940-b1c1722653e1", "1488426862026-3ee34a7d66df",
+        "1531746020798-e6953c6e8e04", "1508214751196-bcfd4ca60f91", "1573496359142-b8d87734a5a2",
+        "1573497019940-1c28c88b4f3e", "1580489944761-15a19d654956", "1531746020798-e6953c6e8e04",
+        "1507152832244-10d45a7e3b93", "1607746882042-944635dfe10e", "1614644147724-2d4785d69962",
+        "1594744803329-e58b31de215f", "1589156280159-27698a70f29e", "1624561172888-ac93c696e10c",
+        "1507003211169-0a1dd7228f2d"
+      ][i % 25]}?auto=format&fit=crop&w=150&h=150&q=80&sig=${i}&q=indian-person`;
       
       const newUser = await User.create({
         name,
