@@ -6,6 +6,7 @@ import JobCard from "../components/JobCard";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ApplyJob = () => {
   const { id } = useParams();
@@ -49,11 +50,11 @@ const ApplyJob = () => {
       );
       if (data.success) {
         setApplied(true);
-        alert("Applied successfully!");
+        toast.success("Applied successfully!");
         fetchUserApplications(); // Refresh applied jobs list
       }
     } catch (error) {
-      alert(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 

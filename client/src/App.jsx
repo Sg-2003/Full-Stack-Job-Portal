@@ -13,12 +13,15 @@ import AddJob from "./pages/recruiter/AddJob";
 import ManageJobs from "./pages/recruiter/ManageJobs";
 import ViewApplications from "./pages/recruiter/ViewApplications";
 import EditJob from "./pages/recruiter/EditJob";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { showRecruiterLogin, companyToken, showUserLogin } = useAppContext();
 
   return (
     <div className="app">
+      <ToastContainer position="top-right" autoClose={3000} />
       {showRecruiterLogin && <RecruiterLogin />}
       {showUserLogin && <Login />}
 

@@ -4,6 +4,7 @@ import Sidebar from "../../components/recruiter/Sidebar";
 import RecruiterNavbar from "../../components/recruiter/RecruiterNavbar";
 import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ViewApplications = () => {
   const { companyToken, backendUrl } = useAppContext();
@@ -20,7 +21,7 @@ const ViewApplications = () => {
         setApplications(data.applications);
       }
     } catch (error) {
-      console.error("View Applicants Load Error:", error.message);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -41,9 +42,10 @@ const ViewApplications = () => {
         setApplications((prev) =>
           prev.map((app) => (app._id === appId ? { ...app, status: newStatus } : app))
         );
+        toast.success(`Application status set to ${newStatus}`);
       }
     } catch (error) {
-      alert(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 

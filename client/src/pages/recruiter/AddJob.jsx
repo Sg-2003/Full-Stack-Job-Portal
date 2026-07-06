@@ -5,6 +5,7 @@ import Sidebar from "../../components/recruiter/Sidebar";
 import RecruiterNavbar from "../../components/recruiter/RecruiterNavbar";
 import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 
@@ -43,7 +44,7 @@ const AddJob = () => {
     const description = quillRef.current?.root?.innerHTML || "";
 
     if (!description || description === "<p><br></p>") {
-      alert("Please enter a job description.");
+      toast.error("Please enter a job description.");
       return;
     }
 
@@ -54,11 +55,11 @@ const AddJob = () => {
         { headers: { token: companyToken } }
       );
       if (data.success) {
-        alert("Job posted successfully!");
+        toast.success("Job posted successfully!");
         navigate("/dashboard/manage-jobs");
       }
     } catch (error) {
-      alert(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 

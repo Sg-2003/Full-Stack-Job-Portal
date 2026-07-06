@@ -5,6 +5,7 @@ import Sidebar from "../../components/recruiter/Sidebar";
 import RecruiterNavbar from "../../components/recruiter/RecruiterNavbar";
 import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 
@@ -40,7 +41,7 @@ const EditJob = () => {
           }
         }
       } catch (error) {
-        alert("Failed to load job details.");
+        toast.error("Failed to load job details.");
         navigate("/dashboard/manage-jobs");
       } finally {
         setLoading(false);
@@ -74,7 +75,7 @@ const EditJob = () => {
     const description = quillRef.current?.root?.innerHTML || "";
 
     if (!description || description === "<p><br></p>") {
-      alert("Please enter a job description.");
+      toast.error("Please enter a job description.");
       return;
     }
 
@@ -85,11 +86,11 @@ const EditJob = () => {
         { headers: { token: companyToken } }
       );
       if (data.success) {
-        alert("Job updated successfully!");
+        toast.success("Job updated successfully!");
         navigate("/dashboard/manage-jobs");
       }
     } catch (error) {
-      alert(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 

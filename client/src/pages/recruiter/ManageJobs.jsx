@@ -5,6 +5,7 @@ import Sidebar from "../../components/recruiter/Sidebar";
 import RecruiterNavbar from "../../components/recruiter/RecruiterNavbar";
 import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ManageJobs = () => {
   const navigate = useNavigate();
@@ -48,10 +49,10 @@ const ManageJobs = () => {
       });
       if (data.success) {
         setJobs(jobs.filter((job) => job._id !== id));
-        alert("Job deleted successfully!");
+        toast.success("Job deleted successfully!");
       }
     } catch (error) {
-      alert(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
@@ -64,9 +65,10 @@ const ManageJobs = () => {
       );
       if (data.success) {
         setJobs(jobs.map((job) => (job._id === id ? { ...job, visible: !job.visible } : job)));
+        toast.success("Visibility updated!");
       }
     } catch (error) {
-      alert(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
