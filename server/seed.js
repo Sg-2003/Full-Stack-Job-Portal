@@ -479,16 +479,19 @@ const seedDB = async () => {
     let user = await User.findOne({ email: "user@demo.com" });
     if (!user) {
       user = await User.create({
-        name: "John Doe",
+        name: "Sukumar Gope",
         email: "user@demo.com",
         password: hashedPassword,
-        resume: ""
+        resume: "",
+        image: "profile_img.png"
       });
-      console.log("Created mock Candidate User (John Doe)");
+      console.log("Created mock Candidate User (Sukumar Gope)");
     } else {
+      user.name = "Sukumar Gope";
       user.password = hashedPassword;
+      user.image = "profile_img.png";
       await user.save();
-      console.log("Updated mock Candidate User password to bcrypt hash");
+      console.log("Updated mock Candidate User password and image");
     }
 
     // ── Extra companies (upsert by email) ────────────────────────────
