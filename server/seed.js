@@ -588,8 +588,19 @@ const seedDB = async () => {
       const resumeFile = `1783328342787-resume-Sukumar_Gope_Frontend_Vebbly_Resume.pdf`;
       
       const isGirl = (i >= 10 && i <= 19) || name === "Neha Deshmukh" || name === "Pooja Trivedi";
-      const genderKeyword = isGirl ? "indian-woman" : "indian-man";
-      const avatarUrl = `https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80&sig=${i}&q=${genderKeyword}`;
+      const genderKeyword = isGirl ? "indian,woman,face,portrait" : "indian,man,face,portrait";
+      // Using Unsplash Source helper query strings with unique seed numbers to ensure all 25 users have completely different profile photos
+      const avatarUrl = `https://images.unsplash.com/photo-${[
+        "1539571696357-5a69c17a67c6", "1507003211169-0a1dd7228f2d", "1500648767791-00dcc994a43e",
+        "1506794778202-cad84cf45f1d", "1519085360753-af0119f7cbe7", "1507152832244-10d45a7e3b93",
+        "1607990283143-e81e7a2c93ab", "1628157582853-a796fa650a6a", "1618018359325-226650e80a04",
+        "1619380061814-58f03707f082", "1494790108377-be9c29b29330", "1524504388940-b1c1722653e1",
+        "1488426862026-3ee34a7d66df", "1531746020798-e6953c6e8e04", "1508214751196-bcfd4ca60f91",
+        "1573496359142-b8d87734a5a2", "1573497019940-1c28c88b4f3e", "1580489944761-15a19d654956",
+        "1594744803329-e58b31de215f", "1589156280159-27698a70f29e", "1624561172888-ac93c696e10c",
+        "1601412436009-d964bd02edbc", "1544005313-94ddf0286df2", "1537368910025-700350fe46c7",
+        "1595211877493-41a4e5f236b3"
+      ][i % 25]}?auto=format&fit=crop&w=150&h=150&q=80`;
       
       const newUser = await User.create({
         name,
