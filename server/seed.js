@@ -587,18 +587,26 @@ const seedDB = async () => {
       // Set distinct resume file names and mock profile avatars dynamically
       const resumeFile = `1783328342787-resume-Sukumar_Gope_Frontend_Vebbly_Resume.pdf`;
       
-      // Use specific Indian portrait photos from Unsplash for realistic candidates
-      const avatarUrl = `https://images.unsplash.com/photo-${[
-        "1507152832244-10d45a7e3b93", "1607746882042-944635dfe10e", "1614644147724-2d4785d69962",
-        "1594744803329-e58b31de215f", "1589156280159-27698a70f29e", "1624561172888-ac93c696e10c",
-        "1633332755192-727a05c4013d", "1607990283143-e81e7a2c93ab", "1618018359325-226650e80a04",
-        "1628157582853-a796fa650a6a", "1619380061814-58f03707f082", "1601412436009-d964bd02edbc",
-        "1609081219090-a6d81d3085bf", "1613145412430-0d0f737c19a4", "1589301760014-d929f3979dbc",
-        "1589302168068-964664d93dc0", "1596215143922-eedeaba0d91c", "1631482901490-d6275a97de04",
-        "1625504615927-5fd3af074c6f", "1619380062453-6252df85e135", "1618336753974-aae8e04506aa",
-        "1623582854588-d60de57fa33f", "1632765854612-9b02b6ec2b15", "1618018357488-828cf30310d6",
-        "1595211877493-41a4e5f236b3"
-      ][i % 25]}?auto=format&fit=crop&w=150&h=150&q=80`;
+      // Use Indian portrait photos from Unsplash mapped to candidate gender
+      const boyPhotos = [
+        "1507003211169-0a1dd7228f2d", "1506794778202-cad84cf45f1d", "1500648767791-00dcc994a43e",
+        "1539571696357-5a69c17a67c6", "1633332755192-727a05c4013d", "1607990283143-e81e7a2c93ab",
+        "1618018359325-226650e80a04", "1628157582853-a796fa650a6a", "1619380061814-58f03707f082",
+        "1507152832244-10d45a7e3b93", "1607746882042-944635dfe10e", "1614644147724-2d4785d69962"
+      ];
+      const girlPhotos = [
+        "1494790108377-be9c29b29330", "1524504388940-b1c1722653e1", "1488426862026-3ee34a7d66df",
+        "1531746020798-e6953c6e8e04", "1508214751196-bcfd4ca60f91", "1573496359142-b8d87734a5a2",
+        "1573497019940-1c28c88b4f3e", "1580489944761-15a19d654956", "1594744803329-e58b31de215f",
+        "1589156280159-27698a70f29e", "1624561172888-ac93c696e10c", "1601412436009-d964bd02edbc"
+      ];
+      
+      const isGirl = i >= 10 && i <= 19; // Indices 10-19 are female candidate names (Ananya, Diya, Pari, Pihu, Riya, Aadhya, Anvi, Saanvi, Sanya, Kavya)
+      const photoId = isGirl 
+        ? girlPhotos[i % girlPhotos.length] 
+        : boyPhotos[i % boyPhotos.length];
+        
+      const avatarUrl = `https://images.unsplash.com/photo-${photoId}?auto=format&fit=crop&w=150&h=150&q=80`;
       
       const newUser = await User.create({
         name,
