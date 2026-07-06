@@ -608,7 +608,7 @@ const seedDB = async () => {
         "1573496359142-b8d87734a5a2", // Aadhya Saxena (Girl)
         "1573497019940-1c28c88b4f3e", // Anvi Gupta (Girl)
         "1580489944761-15a19d654956", // Saanvi Choudhury (Girl)
-        "1594744803329-e58b31de215f", // Sanya Gill (Girl)
+        "1494790108377-be9c29b29330", // Sanya Gill (Girl)
         "1589156280159-27698a70f29e", // Kavya Bhat (Girl)
         "1624561172888-ac93c696e10c", // Pranav Kulkarni (Boy)
         "1601412436009-d964bd02edbc", // Neha Deshmukh (Girl)
