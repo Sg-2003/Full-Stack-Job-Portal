@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import connectDB from "./config/db.js";
+import path from "path";
+import { fileURLToPath } from "url";
 import jobRoutes from "./routes/jobRoutes.js";
 import companyRoutes from "./routes/companyRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -18,7 +20,9 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static uploaded files
-app.use("/uploads", express.static("uploads"));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // API Routes
 app.use("/api/jobs", jobRoutes);
@@ -30,7 +34,12 @@ app.get("/", (req, res) => {
   res.send("Job Portal API is running");
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Start Server (only in local dev, not on Vercel)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel serverless
+export default app;
