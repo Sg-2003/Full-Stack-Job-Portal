@@ -89,6 +89,9 @@ const ViewApplications = () => {
                             }
                             alt={app.userId.name}
                             className="applicant-img"
+                            onError={(e) => {
+                              e.target.src = assets.profile_img;
+                            }}
                           />
                           <span>{app.userId.name}</span>
                         </div>

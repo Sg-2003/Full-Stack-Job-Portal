@@ -74,6 +74,9 @@ const ApplyJob = () => {
                   src={`${backendUrl}/uploads/${jobData.companyId.image}`}
                   alt={jobData.companyId.name}
                   className="job-company-logo-lg"
+                  onError={(e) => {
+                    e.target.src = assets.company_icon;
+                  }}
                 />
                 <div className="job-header-info">
                   <h1>{jobData.title}</h1>

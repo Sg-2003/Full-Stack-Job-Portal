@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/AppContext";
 
 const RecruiterNavbar = () => {
-  const { companyData, setCompanyData, setCompanyToken } = useAppContext();
+  const { companyData, setCompanyData, setCompanyToken, backendUrl } = useAppContext();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -25,7 +25,19 @@ const RecruiterNavbar = () => {
             <div className="recruiter-profile">
               <p>Welcome, {companyData.name}</p>
               <div className="recruiter-avatar">
-                <img src={assets.company_icon} alt="Company" />
+                <img
+                  src={
+                    companyData.image
+                      ? companyData.image.startsWith("http")
+                        ? companyData.image
+                        : `${backendUrl}/uploads/${companyData.image}`
+                      : assets.company_icon
+                  }
+                  alt="Company"
+                  onError={(e) => {
+                    e.target.src = assets.company_icon;
+                  }}
+                />
                 <div className="recruiter-dropdown">
                   <button onClick={handleLogout}>Logout</button>
                 </div>

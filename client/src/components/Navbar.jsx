@@ -34,6 +34,9 @@ const Navbar = () => {
                 }
                 alt="Profile"
                 className="profile-avatar"
+                onError={(e) => {
+                  e.target.src = assets.profile_img;
+                }}
               />
               <div className="user-dropdown">
                 <button onClick={() => navigate("/applications")}>Applied Jobs</button>

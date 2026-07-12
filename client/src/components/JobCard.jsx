@@ -10,7 +10,14 @@ const JobCard = ({ job }) => {
   return (
     <div className="job-card" onClick={() => { navigate(`/apply-job/${job._id}`); window.scrollTo(0, 0); }}>
       <div className="job-card-top">
-        <img src={`${backendUrl}/uploads/${job.companyId.image}`} alt={job.companyId.name} className="job-company-logo" />
+        <img
+          src={`${backendUrl}/uploads/${job.companyId.image}`}
+          alt={job.companyId.name}
+          className="job-company-logo"
+          onError={(e) => {
+            e.target.src = assets.company_icon;
+          }}
+        />
       </div>
       <div className="job-card-body">
         <h3 className="job-title">{job.title}</h3>

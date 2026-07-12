@@ -57,6 +57,9 @@ const AppliedJobs = () => {
                   }
                   alt="Profile"
                   className="profile-img"
+                  onError={(e) => {
+                    e.target.src = assets.profile_img;
+                  }}
                 />
               </div>
               <h2>Hi, {userData?.name || "Candidate"}</h2>
@@ -130,6 +133,9 @@ const AppliedJobs = () => {
                           <img
                             src={`${backendUrl}/uploads/${app.jobId.companyId.image}`}
                             alt={app.jobId.companyId.name}
+                            onError={(e) => {
+                              e.target.src = assets.company_icon;
+                            }}
                           />
                           <span>{app.jobId.companyId.name}</span>
                         </div>
