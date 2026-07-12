@@ -29,6 +29,23 @@ app.use("/api/jobs", jobRoutes);
 app.use("/api/company", companyRoutes);
 app.use("/api/user", userRoutes);
 
+import fs from "fs";
+app.get("/api/debug-files", (req, res) => {
+  try {
+    const filesInDir = fs.readdirSync(__dirname);
+    const filesInParent = fs.existsSync(path.join(__dirname, "..")) ? fs.readdirSync(path.join(__dirname, "..")) : [];
+    res.json({
+      __dirname,
+      filesInDir,
+      filesInParent,
+      existsUploadsDir: fs.existsSync(path.join(__dirname, "uploads")),
+      existsParentUploadsDir: fs.existsSync(path.join(__dirname, "..", "uploads")),
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Basic health check route
 app.get("/", (req, res) => {
   res.send("Job Portal API is running");
